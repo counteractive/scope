@@ -1,0 +1,24 @@
+# this is a stub and does not yet reflect a complete proposed custom object
+# schema
+
+# The Platform System extension covers systems that are characterized by a 
+# single application rather than multi-purpose use.  Platforms can run on a
+# single physical system (like a web server) or they may be an amalgamation
+# of many underlying systems serving a distinct application experience, 
+# like software-as-a-service.  
+
+# TODO: consider other naming options; the idea was to capture SaaS and
+# other application platforms, but "Application" seemed to collide too much
+# with "software" and "tool," not to mention smartphone "apps".
+
+# Canonical examples would be O365 tenancies or multiplayer game platforms
+# (see below)
+
+# Again, this is a system, something on which a user can have a session.  In
+# this model, the application might be an entire multiplayer game 
+# infrastructure (sometimes used for C2 or exfil), not the individual
+# installation of the game's client on a workstation -- though that workstation
+# would be a system too!
+
+# This is distinct from "tool" or "software" objects, more appropriate for 
+# single running process.

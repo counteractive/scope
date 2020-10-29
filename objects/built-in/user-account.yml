@@ -1,0 +1,171 @@
+title: User Account Object
+
+description: |-
+  The User Account object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. As all properties of this object are optional, at least one of the properties defined below **MUST** be included when using this object.
+
+type: user-account
+
+required_common_properties: 
+  - type
+  - id
+
+optional_common_properties:
+  - spec_version
+  - object_marking_refs
+  - granular_markings
+  - defanged
+  - extensions
+
+not_applicable_common_properties:
+  - created_by_ref
+  - revoked
+  - labels
+  - confidence
+  - lang
+  - external_references
+
+id_contributing_properties: 
+  - account_type
+  - user_id
+  - account_login
+
+# specific_properties and examples are arrays to maintain sort order
+
+specific_properties: 
+  - property_name: type
+    required: true
+    property_type: string
+    property_description: |-
+      The value of this property **MUST** be user-account.
+
+  - property_name: extensions
+    required: false
+    property_type: dictionary
+    property_description: |-
+      The User Account object defines the following extensions. In addition to these, producers **MAY** create their own.
+      
+      `unix-account-ext`
+      
+      Dictionary keys **MUST** identify the extension type by name.
+      
+      The corresponding dictionary values **MUST** contain the contents of the extension instance.
+
+  - property_name: user_id
+    required: false
+    property_type: string
+    property_description: |-
+      Specifies the identifier of the account. The format of the identifier depends on the system the user account is maintained in, and may be a numeric ID, a GUID, an account name, an email address, etc. The **user_id** property should be populated with whatever field is the unique identifier for the system the account is a member of. For example, on UNIX systems it would be populated with the UID.
+
+  - property_name: credential
+    required: false
+    property_type: string
+    property_description: |-
+      Specifies a cleartext credential. This is only intended to be used in capturing metadata from malware analysis (e.g., a hard-coded domain administrator password that the malware attempts to use for lateral movement) and **SHOULD NOT** be used for sharing of PII.
+
+  - property_name: account_login
+    required: false
+    property_type: string
+    property_description: |-
+      Specifies the account login string, used in cases where the **user_id** property specifies something other than what a user would type when they login.
+      
+      For example, in the case of a Unix account with user_id 0, the account_login might be “root”.
+
+  - property_name: account_type
+    required: false
+    property_type: string
+    property_description: |-
+      Specifies the type of the account. This is an open vocabulary and values **SHOULD** come from the `account-type-ov` open vocabulary.
+
+  - property_name: display_name
+    required: false
+    property_type: string
+    property_description: |-
+      Specifies the display name of the account, to be shown in user interfaces, if applicable.
+      
+      On Unix, this is equivalent to the GECOS field. 
+
+  - property_name: is_service_account
+    required: false
+    property_type: boolean
+    property_description: |-
+      Indicates that the account is associated with a network service or system process (daemon), not a specific individual.
+
+  - property_name: is_privileged
+    required: false
+    property_type: boolean
+    property_description: |-
+      Specifies that the account has elevated privileges (i.e., in the case of root on Unix or the Windows Administrator account).
+
+  - property_name: can_escalate_privs
+    required: false
+    property_type: boolean
+    property_description: |-
+      Specifies that the account has the ability to escalate privileges (i.e., in the case of sudo on Unix or a Windows Domain Admin account)
+
+  - property_name: is_disabled
+    required: false
+    property_type: boolean
+    property_description: |-
+      Specifies if the account is disabled.
+
+  - property_name: account_created
+    required: false
+    property_type: timestamp
+    property_description: |-
+      Specifies when the account was created.
+
+  - property_name: account_expires
+    required: false
+    property_type: timestamp
+    property_description: |-
+      Specifies the expiration date of the account.
+
+  - property_name: credential_last_changed
+    required: false
+    property_type: timestamp
+    property_description: |-
+      Specifies when the account credential was last changed.
+
+  - property_name: account_first_login
+    required: false
+    property_type: timestamp
+    property_description: |-
+      Specifies when the account was first accessed.
+
+  - property_name: account_last_login
+    required: false
+    property_type: timestamp
+    property_description: |-
+      Specifies when the account was last accessed.
+
+examples:
+  - example_title: Basic Unix Account
+    example_details: |-
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c",
+        "user_id": "1001",
+        "account_login": "jdoe",
+        "account_type": "unix",
+        "display_name": "John Doe",
+        "is_service_account": false,
+        "is_privileged": false,
+        "can_escalate_privs": true,
+        "account_created": "2016-01-20T12:31:12Z",
+        "credential_last_changed": "2016-01-20T14:27:43Z",
+        "account_first_login": "2016-01-20T14:26:07Z",
+        "account_last_login": "2016-07-22T16:08:28Z"
+      }
+
+  - example_title: Basic Twitter Account
+    example_details: |-
+      {
+        "type": "user-account",
+        "spec_version": "2.1",
+        "id": "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba",
+        "user_id": "thegrugq_ebooks",
+        "account_login": "thegrugq_ebooks",
+        "account_type": "twitter",
+        "display_name": "the grugq"
+      }

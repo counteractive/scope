@@ -1,0 +1,16 @@
+{
+  "name": "render",
+  "version": "1.0.0",
+  "description": "",
+  "main": "render.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "js-yaml": "^3.14.0",
+    "marked": "^1.2.2"
+  }
+}

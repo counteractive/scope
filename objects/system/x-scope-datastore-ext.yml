@@ -1,0 +1,9 @@
+# this is a stub and does not yet reflect a complete proposed schema
+
+# The Datastore System extension covers systems that operate primarily as a
+# flexible storage location, and documents their data storage capabilities and
+# characteristics. This is not designed to describe typical local disks, but 
+# rather things like file servers, databases, and cloud storage.
+
+# While file objects are useful for specific data, these fields characterize 
+# storage as a whole, including its sensitivity.

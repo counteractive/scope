@@ -1,0 +1,198 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Custom Objects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    body {
+      font-size: 10pt;
+      font-family: "Liberation Sans", sans-serif;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      background-color: #F9F2F4;
+      color: #C7254E;
+    }
+
+    p.coop-example {
+      display: inline-block;
+      margin: 0;
+      white-space: pre-wrap;
+      max-width: 623px;
+      font-size: 9pt;
+      font-family: Consolas, monospace;
+      background-color: #EFEFEF;
+      color: black;
+    }
+
+    table {
+      max-width: 623px;
+      border-collapse: collapse;
+    }
+
+    td {
+      border: 1pt solid black;
+      padding: 5pt;
+    }
+
+    td p:first-child { margin-top: 0; }
+
+    td p:last-child { margin-bottom: 0; }
+
+    .coop-properties-heading {
+      font-weight: bold;
+      background-color: #073763;  
+      color: white;
+    }
+
+    .coop-common-properties {
+      background-color: #CFE2F3;
+    }
+
+    .coop-common-property {
+      background-color: #D9D9D9;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Custom Objects</h1>
+  <h2><%= title %></h2>
+  <p>
+    Type Name: <code><%= type %></code>
+  </p>
+  <p>
+    <%- marked(description) %>
+  </p>
+  <h3>Properties</h3>
+  <table>
+    <tbody>
+      <% if(required_common_properties){ %>
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            Required Common Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <%- 
+              required_common_properties
+                .map(p => `<strong>${p}</strong>`)
+                .join(", ")
+            %>
+          </td>
+        </tr>  
+      <% } %>
+      <% if(optional_common_properties){ %>
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            Optional Common Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <%- 
+              optional_common_properties
+                .map(p => `<strong>${p}</strong>`)
+                .join(", ")
+            %>
+          </td>
+        </tr>  
+      <% } %>
+      <% if(not_applicable_common_properties){ %>
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            Not Applicable Common Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <%- 
+              not_applicable_common_properties
+                .map(p => `<strong>${p}</strong>`)
+                .join(", ")
+            %>
+          </td>
+        </tr>  
+      <% } %>
+      <% if(specific_properties){ %>
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            <%= title %> Specific Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <%- 
+              specific_properties
+                .map(p => `<strong>${p.property_name}</strong>`)
+                .join(", ")
+            %>
+          </td>
+        </tr>  
+      <% } %>
+      <% if(id_contributing_properties){ %>
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            ID Contributing Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <%- 
+              id_contributing_properties
+                .map(p => `<strong>${p}</strong>`)
+                .join(", ")
+            %>
+          </td>
+        </tr>  
+      <% } %>
+      <% if(specific_properties){ %>
+        <tr>
+          <td class="coop-properties-heading">
+            Property Name
+          </td>
+          <td class="coop-properties-heading">
+            Type
+          </td>
+          <td class="coop-properties-heading">
+            Description
+          </td>
+        </tr>
+        <% specific_properties.forEach(p => { %>
+          <tr>
+            <% 
+              let r = required_common_properties && required_common_properties.includes(p.property_name)
+              let o = optional_common_properties && optional_common_properties.includes(p.property_name)
+            %>
+            <td <%- `${ (r || o) ? 'class="coop-common-property"' : '' }` %>>
+              <p><%- `<strong>${p.property_name}</strong> <em>(${p.required ? 'required' : 'optional'})</em>` %></p>
+            </td>
+            <td <%- `${ (r || o) ? 'class="coop-common-property"' : '' }` %>>
+              <p><%- `<code>${p.property_type}</code>` %></p>
+            </td>
+            <td <%- `${ (r || o) ? 'class="coop-common-property"' : '' }` %>>
+              <%- marked(p.property_description, {breaks: true}) %>
+            </td>
+          </tr>  
+        <% }) %>
+      <% } %>
+    </tbody>
+  </table>
+
+  <% if(!!locals.examples){ %>
+    <p><strong>Examples</strong></p>
+    <% examples.forEach(e => { %>
+      <p>
+        <em><%= e.example_title %></em>
+      </p>
+      <p class="coop-example"><%- e.example_details _%></p>
+    <% }) %>
+  <% } %>
+
+</body>
+
+</html>

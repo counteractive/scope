@@ -1,0 +1,59 @@
+title: System Object
+
+description: |-
+  The System object represents a logically distinct computing system on which an account can have a session.  This is a broad category also known as endpoints, hosts, or assets. In addition to physical and virtual multi-purpose computers, this also describes complex applications and many network infrastructure devices.
+
+  These are the places where most every other event or observable occurs.
+
+type: x-scope-system
+
+id_contributing_properties: 
+  - TODO
+
+# specific_properties and examples are arrays to maintain sort order
+
+specific_properties: 
+  - property_name: type
+    required: true
+    property_type: string
+    property_description: |-
+      The value of this property **MUST** be x-scope-system.
+
+  # Note: extensions are not exclusive.  For example, describing a firewall hosted on proxmox might involve two extensions (`x-scope-appliance-ext` and `x-scope-virtual-ext`), and describing a OneDrive tenancy or AWS S3 bucket might use `x-scope-platform-ext` and `x-scope-datastore-ext`.
+  - property_name: extensions
+    required: false
+    property_type: dictionary
+    property_description: |-
+      The System object defines the following extensions. In addition to these, producers **MAY** create their own.
+      
+      `x-scope-physical-ext`
+      `x-scope-virtual-ext`
+      `x-scope-datastore-ext`
+      `x-scope-appliance-ext`
+      `x-scope-platform-ext`
+
+      Dictionary keys **MUST** identify the extension type by name.
+      
+      The corresponding dictionary values **MUST** contain the contents of the extension instance.
+
+# do not edit below this line -----------------------
+# common property requirements unchanged
+required_common_properties: 
+  - type
+  - id
+
+optional_common_properties:
+  - spec_version
+  - object_marking_refs
+  - granular_markings
+  - defanged
+  - extensions
+
+not_applicable_common_properties:
+  - created_by_ref
+  - revoked
+  - labels
+  - confidence
+  - lang
+  - external_references
+

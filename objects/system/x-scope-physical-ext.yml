@@ -1,0 +1,8 @@
+# this is a stub and does not yet reflect a complete proposed custom object
+# schema
+
+# The Physical System extension covers classic physical systems. This includes
+# physical systems of any form factor, including rack-mounted servers, 
+# desktops, laptops, tablets, smartphones, networking devices, and other appliances.
+
+# It captures fields applicable to physical systems, such as location.

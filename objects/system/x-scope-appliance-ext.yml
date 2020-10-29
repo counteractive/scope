@@ -1,0 +1,7 @@
+# this is a stub and does not yet reflect a complete proposed schema
+
+# The Appliance System extension covers network devices on which a User 
+# Account can have a Session.  This could include VPN concentrators, wifi 
+# gateways, etc.  This also covers most firewalls (they're just linux boxes!),
+# IDS/IPS, proxies, and routers.  Basically anything above a dumb switch has 
+# some concept of a session, so would be covered by this extension.

@@ -1,0 +1,40 @@
+# this is a stub and does not yet reflect a complete proposed custom object schema
+
+title: Session Object
+
+description: |-
+  The Session object represents any distinct period of interaction between a User Account and a System.  It's characterized by an account, start time, and end time, though in the simplest case they may be the same (say, via a single REST call).  Also, one or the other may be unknown. 
+  
+  In a way, anything that can support a Session can be considered a System (`x-scope-system`) in this model.
+
+type: x-scope-session
+
+# specific_properties and examples are arrays to maintain sort order
+
+specific_properties: 
+  - property_name: type
+    required: true
+    property_type: string
+    property_description: |-
+      The value of this property **MUST** be x-scope-session.
+
+# do not edit below this line ----
+required_common_properties: 
+  - type
+  - id
+
+optional_common_properties:
+  - spec_version
+  - object_marking_refs
+  - granular_markings
+  - defanged
+  - extensions
+
+not_applicable_common_properties:
+  - created_by_ref
+  - revoked
+  - labels
+  - confidence
+  - lang
+  - external_references
+

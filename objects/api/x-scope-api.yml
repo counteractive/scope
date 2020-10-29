@@ -1,0 +1,38 @@
+# this is a stub and does not yet reflect a complete proposed custom object schema
+
+title: API Object
+
+description: |-
+  The API object represents application programming interfaces (APIs), including the breadth of API types, from OS system calls to RPC to REST.
+
+type: x-scope-api
+
+# specific_properties and examples are arrays to maintain sort order
+
+specific_properties: 
+  - property_name: type
+    required: true
+    property_type: string
+    property_description: |-
+      The value of this property **MUST** be x-scope-api.
+
+
+# do not edit below this line ----
+required_common_properties: 
+  - type
+  - id
+
+optional_common_properties:
+  - spec_version
+  - object_marking_refs
+  - granular_markings
+  - defanged
+  - extensions
+
+not_applicable_common_properties:
+  - created_by_ref
+  - revoked
+  - labels
+  - confidence
+  - lang
+  - external_references
