@@ -4,7 +4,7 @@ A repository and namespace for STIX custom objects and extensions, as well as pr
 
 This is intended for discussion and evaluation, to try to find any devils in the details.
 
-**Caveat:** Please consider this alpha content, not (yet) intended for production use.  However, all customizations are [compliant with the STIX 2.1 spec](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070825), so it shouldn't break anything to try it out.
+**Caveat:** Please consider this alpha content, not (yet) intended for production use.  However, all customizations should be [compliant with the STIX 2.1 spec](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070825), so it shouldn't break anything to try it out.
 
 ## Goals
 
@@ -59,11 +59,11 @@ We love STIX, but we've run into two limitations:
 ### System
 
 - System (`x-scope-system`)
-    - Physical System Extension (`x-scope-physical-ext`), 
-    - Virtual System Extension (`x-scope-virtual-ext`)
-    - Datastore System Extension (`x-scope-datastore-ext`)
-    - Appliance System Extension (`x-scope-appliance-ext`)
-    - Platform System Extension (`x-scope-platform-ext`)
+    - Physical System Extension (`x-scope-physical-ext`), _e.g._, laptop, desktop, server in rack
+    - Virtual System Extension (`x-scope-virtual-ext`), _e.g._, vm, container
+    - Datastore System Extension (`x-scope-datastore-ext`), _e.g._, database, wiki, s3
+    - Appliance System Extension (`x-scope-appliance-ext`), _e.g._, F5 load balancer, wifi gateway, web application firewall
+    - Platform System Extension (`x-scope-platform-ext`), _e.g._, microsoft 365 tenancy, salesforce instance
 
 The concept of a "system" (_a.k.a._, host, endpoint, asset) is ubiquitous, and has an intuitive definition, something like "a logically distinct combination of hardware and software."  A system is where most observables are in fact observed: `file`, `process`, `user-account`, _etc._, are observed on systems.
 
@@ -72,8 +72,6 @@ Except unfortunately STIX doesn't have a type for them.  CybOX used to (called "
 Another way to think of a system is as anything supporting sessions (see below), but regardless of the formal definition, it's a prerequisite to making STIX more relevant to detection and response.  We think it'll help the CTI use-case too.
 
 We propose bringing it back as a new, inclusive `system` type with extensions to capture the fact that systems aren't just physical desktop boxes anymore.
-
-
 
 ### Session
 
@@ -124,7 +122,7 @@ This provides some benefits:
 
 1. You can store data that applies to all objects of that type.  For the programmers out there, think static members in C++/Java or prototype properties in javascript.
 
-    The specific use-case that inspired this was trying to use SCO abstractions as the basis for improving MITRE ATT&CK's data sources.  For example, it'd be useful to describe what Windows event logs would help us populate a `process` observable.  With a `type` object, one way to do this is to add this data under the `external_references` field of the `type` object corresponding to the `process` SCO.
+    The specific use-case that inspired this was trying to use SCO abstractions as the basis for improving MITRE ATT&CK's data sources.  For example, it'd be useful to describe what Windows event logs would help us populate a `process` observable.  With a `type` object, one way to do this is to add this data under the `external_references` field of the `type` object corresponding to the `process` SCO (or to a custom `evidence_locations` field, or whatever).
 
 1. Relationships (SROs) can refer to types in general rather than just instances of a type.
 
