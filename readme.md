@@ -94,6 +94,65 @@ For example, when discussing ATT&CK `attack-pattern`s like [process injection](h
 
 Like `system`, `api` would benefit from an updated definition to include the breadth of modern API types, from OS system calls to RPC to REST.
 
+### Analysis
+
+**So why did we choose these custom types?**  STIX already many observable types, and we want to be judicious about adding more, consistent with our goals above.  Along with the detection and response use-cases (from our experience) we used the following analysis to understand coverage of existing data sources:
+
+ATT&CK v8, across all platforms and non-revoked techniques, has ~1,627 data source descriptions:
+
+```bash
+# i'm not a jq expert ...
+
+$ jq '[.objects[] | select(.type == "attack-pattern" and (.revoked | not) and (.x_mitre_deprecated | not) ) | .x_mitre_data_sources ] | flatten | .[] | select(. != null)' < enterprise-attack-v8.json | wc -l
+1627
+```
+
+These represent ~65 unique values following a long-tail, power-law descent:
+
+|![Data Source Prevalence](./img/data-source-prevalence.jpg)|
+| --- |
+| Data Source Prevalence |
+
+The top 10 data source types give you 67%+ the total:
+
+| source | count | % | % cumulative |
+| --- | --- | --- | --- |
+| Process monitoring | 290 | 17.8% | 17.8% |
+| Process command-line parameters | 186 | 11.4% | 29.3% |
+| File monitoring | 176 | 10.8% | 40.1% |
+| Packet capture | 75 | 4.6% | 44.7% |
+| **API monitoring** | 74 | 4.5% | 49.2% |
+| Netflow/Enclave netflow | 64 | 3.9% | 53.2% |
+| Process use of network | 61 | 3.7% | 56.9% |
+| **Authentication logs** | 59 | 3.6% | 60.5% |
+| Windows Registry | 55 | 3.4% | 63.9% |
+| Network protocol analysis | 52 | 3.2% | 67.1% |
+
+Since STIX already has `process`, `file`, `network-traffic`, and `windows-registry-x`, `api` was a nice choice to round it out.  Notice too that authentication logs (`session`) is the only other source on this list that doesn't have an existing STIX type (outside implicit, embedded login times).
+
+Of course, "covering the most techniques" isn't the only measure of usefulness of a data source.  To get a sense of which data sources covered the most commonly observed techniques, we pulled the top 20 techniques from the (excellent) [2020 Red Canary Threat Report](https://redcanary.com/threat-detection-report/) as a representative sample.  Without going into detail on their numbers (the report itself is free, check it out!), we can actually look at all 16 data sources for these techniques:
+
+| source | count | % | 
+| --- | --- | --- | 
+| Process monitoring | 36 | 31.6% | 31.6% |
+| Process command-line parameters | 21 | 18.4% | 50.0% |
+| File monitoring | 17 | 14.9% | 64.9% |
+| **API monitoring** | 11 | 9.6% | 74.6% |
+| PowerShell logs | 7 | 6.1% | 80.7% |
+| Windows event logs | 6 | 5.3% | 86.0% |
+| Binary file metadata | 4 | 3.5% | 89.5% |
+| DLL monitoring | 2 | 1.8% | 91.2% |
+| Netflow/Enclave netflow | 2 | 1.8% | 93.0% |
+| **System calls** | 2 | 1.8% | 94.7% |
+| Windows Registry | 1 | 0.9% | 95.6% |
+| Process use of network | 1 | 0.9% | 96.5% |
+| Packet capture | 1 | 0.9% | 97.4% |
+| Named Pipes | 1 | 0.9% | 98.2% |
+| **Authentication logs** | 1 | 0.9% | 99.1% |
+| Network protocol analysis | 1 | 0.9% | 100.0% |
+
+As with the coverage analysis, STIX has most of these (PowerShell logs are logs of `process`es, named pipes are just `file`s, etc.).  `api` joins the club again, including "System calls," as do "Authentication logs" for `session`s.
+
 ## Custom Domain Objects
 
 ### STIX Type Object
