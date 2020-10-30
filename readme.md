@@ -31,13 +31,13 @@ We love STIX, but we've run into two limitations:
 
     > "while I understand that organizations want and need to track specific assets that were impacted by an event, I find it hard to imagine the general-purpose use-case where organizations are sharing such info widely. As such, it seems out of scope for a CTI exchange format."
 
-    We appreciate the desire to manage the scope of the STIX project, but we respectfully disagree.  
+    We appreciate the desire to manage the scope of the STIX project, but we respectfully disagree:  
 
-    1. Security operations, digital forensics, and incident response frequently require sharing information across organizational boundaries.  We commonly share between departments, sister organizations, regulators, attorneys, law enforcement, vendors, customers, and more.  It just tends to be _ad hoc_, governed by whatever tools or procedures happen to be in place. Lots of word documents and pdfs.
-    1. STIX has features for controlling how information should be shared (_e.g._, [TLP](https://www.cisa.gov/tlp)): it's not exclusively designed for sharing information "widely."
-    1. Attacks are often launched from victims' compromised systems, so the distinction between "friendly assets" and "attacker infrastructure" is already pretty blurry.
-    1. It leads to arbitrary distinctions (_e.g._, having a `user-account` observable in scope, but the system a `user-account` _uses_ out of scope).
-    1. Parallel efforts for describing "friendly" or "internal" observables would have to solve problems STIX already solved ... along with compatibility with STIX itself!
+    - Security operations, digital forensics, and incident response frequently require sharing information across organizational boundaries.  We commonly share between departments, sister organizations, regulators, attorneys, law enforcement, vendors, customers, and more.  It just tends to be _ad hoc_, governed by whatever tools or procedures happen to be in place. Lots of word documents and pdfs.
+    - STIX has features for controlling how information should be shared (_e.g._, [TLP](https://www.cisa.gov/tlp)): it's not exclusively designed for sharing information "widely."
+    - Attacks are often launched from victims' compromised systems, so the distinction between "friendly assets" and "attacker infrastructure" is already pretty blurry.
+    - It leads to arbitrary distinctions (_e.g._, having a `user-account` observable in scope, but the system a `user-account` _uses_ out of scope).
+    - Parallel efforts for describing "friendly" or "internal" observables would have to solve problems STIX already solved ... along with compatibility with STIX itself!
 
     **Bottom line:** we think STIX has a lot to offer beyond just CTI, particularly in the realm of detection and response, and a few custom objects would vastly increase its usefulness without unduly compromising concision.
 
