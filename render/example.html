@@ -1,0 +1,420 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title>Custom Objects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    body {
+      font-size: 10pt;
+      font-family: "Liberation Sans", sans-serif;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      background-color: #F9F2F4;
+      color: #C7254E;
+    }
+
+    p.coop-example {
+      display: inline-block;
+      margin: 0;
+      white-space: pre-wrap;
+      max-width: 623px;
+      font-size: 9pt;
+      font-family: Consolas, monospace;
+      background-color: #EFEFEF;
+      color: black;
+    }
+
+    table {
+      max-width: 623px;
+      border-collapse: collapse;
+    }
+
+    td {
+      border: 1pt solid black;
+      padding: 5pt;
+    }
+
+    td p:first-child { margin-top: 0; }
+
+    td p:last-child { margin-bottom: 0; }
+
+    .coop-properties-heading {
+      font-weight: bold;
+      background-color: #073763;  
+      color: white;
+    }
+
+    .coop-common-properties {
+      background-color: #CFE2F3;
+    }
+
+    .coop-common-property {
+      background-color: #D9D9D9;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Custom Objects</h1>
+  <h2>User Account Object</h2>
+  <p>
+    Type Name: <code>user-account</code>
+  </p>
+  <p>
+    <p>The User Account object represents an instance of any type of user account, including but not limited to operating system, device, messaging service, and social media platform accounts. As all properties of this object are optional, at least one of the properties defined below <strong>MUST</strong> be included when using this object.</p>
+
+  </p>
+  <h3>Properties</h3>
+  <table>
+    <tbody>
+      
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            Required Common Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <strong>type</strong>, <strong>id</strong>
+          </td>
+        </tr>  
+      
+      
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            Optional Common Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <strong>spec_version</strong>, <strong>object_marking_refs</strong>, <strong>granular_markings</strong>, <strong>defanged</strong>, <strong>extensions</strong>
+          </td>
+        </tr>  
+      
+      
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            Not Applicable Common Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <strong>created_by_ref</strong>, <strong>revoked</strong>, <strong>labels</strong>, <strong>confidence</strong>, <strong>lang</strong>, <strong>external_references</strong>
+          </td>
+        </tr>  
+      
+      
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            User Account Object Specific Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <strong>type</strong>, <strong>extensions</strong>, <strong>user_id</strong>, <strong>credential</strong>, <strong>account_login</strong>, <strong>account_type</strong>, <strong>display_name</strong>, <strong>is_service_account</strong>, <strong>is_privileged</strong>, <strong>can_escalate_privs</strong>, <strong>is_disabled</strong>, <strong>account_created</strong>, <strong>account_expires</strong>, <strong>credential_last_changed</strong>, <strong>account_first_login</strong>, <strong>account_last_login</strong>
+          </td>
+        </tr>  
+      
+      
+        <tr>
+          <td colspan="3" class="coop-properties-heading">
+            ID Contributing Properties
+          </td>
+        </tr>
+        <tr>
+          <td colspan="3" class="coop-common-properties">
+            <strong>account_type</strong>, <strong>user_id</strong>, <strong>account_login</strong>
+          </td>
+        </tr>  
+      
+      
+        <tr>
+          <td class="coop-properties-heading">
+            Property Name
+          </td>
+          <td class="coop-properties-heading">
+            Type
+          </td>
+          <td class="coop-properties-heading">
+            Description
+          </td>
+        </tr>
+        
+          <tr>
+            
+            <td class="coop-common-property">
+              <p><strong>type</strong> <em>(required)</em></p>
+            </td>
+            <td class="coop-common-property">
+              <p><code>string</code></p>
+            </td>
+            <td class="coop-common-property">
+              <p>The value of this property <strong>MUST</strong> be user-account.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td class="coop-common-property">
+              <p><strong>extensions</strong> <em>(optional)</em></p>
+            </td>
+            <td class="coop-common-property">
+              <p><code>dictionary</code></p>
+            </td>
+            <td class="coop-common-property">
+              <p>The User Account object defines the following extensions. In addition to these, producers <strong>MAY</strong> create their own.</p>
+<p><code>unix-account-ext</code></p>
+<p>Dictionary keys <strong>MUST</strong> identify the extension type by name.</p>
+<p>The corresponding dictionary values <strong>MUST</strong> contain the contents of the extension instance.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>user_id</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>string</code></p>
+            </td>
+            <td >
+              <p>Specifies the identifier of the account. The format of the identifier depends on the system the user account is maintained in, and may be a numeric ID, a GUID, an account name, an email address, etc. The <strong>user_id</strong> property should be populated with whatever field is the unique identifier for the system the account is a member of. For example, on UNIX systems it would be populated with the UID.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>credential</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>string</code></p>
+            </td>
+            <td >
+              <p>Specifies a cleartext credential. This is only intended to be used in capturing metadata from malware analysis (e.g., a hard-coded domain administrator password that the malware attempts to use for lateral movement) and <strong>SHOULD NOT</strong> be used for sharing of PII.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>account_login</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>string</code></p>
+            </td>
+            <td >
+              <p>Specifies the account login string, used in cases where the <strong>user_id</strong> property specifies something other than what a user would type when they login.</p>
+<p>For example, in the case of a Unix account with user_id 0, the account_login might be “root”.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>account_type</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>string</code></p>
+            </td>
+            <td >
+              <p>Specifies the type of the account. This is an open vocabulary and values <strong>SHOULD</strong> come from the <code>account-type-ov</code> open vocabulary.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>display_name</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>string</code></p>
+            </td>
+            <td >
+              <p>Specifies the display name of the account, to be shown in user interfaces, if applicable.</p>
+<p>On Unix, this is equivalent to the GECOS field. </p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>is_service_account</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>boolean</code></p>
+            </td>
+            <td >
+              <p>Indicates that the account is associated with a network service or system process (daemon), not a specific individual.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>is_privileged</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>boolean</code></p>
+            </td>
+            <td >
+              <p>Specifies that the account has elevated privileges (i.e., in the case of root on Unix or the Windows Administrator account).</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>can_escalate_privs</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>boolean</code></p>
+            </td>
+            <td >
+              <p>Specifies that the account has the ability to escalate privileges (i.e., in the case of sudo on Unix or a Windows Domain Admin account)</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>is_disabled</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>boolean</code></p>
+            </td>
+            <td >
+              <p>Specifies if the account is disabled.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>account_created</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>timestamp</code></p>
+            </td>
+            <td >
+              <p>Specifies when the account was created.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>account_expires</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>timestamp</code></p>
+            </td>
+            <td >
+              <p>Specifies the expiration date of the account.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>credential_last_changed</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>timestamp</code></p>
+            </td>
+            <td >
+              <p>Specifies when the account credential was last changed.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>account_first_login</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>timestamp</code></p>
+            </td>
+            <td >
+              <p>Specifies when the account was first accessed.</p>
+
+            </td>
+          </tr>  
+        
+          <tr>
+            
+            <td >
+              <p><strong>account_last_login</strong> <em>(optional)</em></p>
+            </td>
+            <td >
+              <p><code>timestamp</code></p>
+            </td>
+            <td >
+              <p>Specifies when the account was last accessed.</p>
+
+            </td>
+          </tr>  
+        
+      
+    </tbody>
+  </table>
+
+  
+    <p><strong>Examples</strong></p>
+    
+      <p>
+        <em>Basic Unix Account</em>
+      </p>
+      <p class="coop-example">{
+  "type": "user-account",
+  "spec_version": "2.1",
+  "id": "user-account--0d5b424b-93b8-5cd8-ac36-306e1789d63c",
+  "user_id": "1001",
+  "account_login": "jdoe",
+  "account_type": "unix",
+  "display_name": "John Doe",
+  "is_service_account": false,
+  "is_privileged": false,
+  "can_escalate_privs": true,
+  "account_created": "2016-01-20T12:31:12Z",
+  "credential_last_changed": "2016-01-20T14:27:43Z",
+  "account_first_login": "2016-01-20T14:26:07Z",
+  "account_last_login": "2016-07-22T16:08:28Z"
+}</p>
+    
+      <p>
+        <em>Basic Twitter Account</em>
+      </p>
+      <p class="coop-example">{
+  "type": "user-account",
+  "spec_version": "2.1",
+  "id": "user-account--9bd3afcf-deee-54f9-83e2-520653cb6bba",
+  "user_id": "thegrugq_ebooks",
+  "account_login": "thegrugq_ebooks",
+  "account_type": "twitter",
+  "display_name": "the grugq"
+}</p>
+    
+  
+
+</body>
+
+</html>
