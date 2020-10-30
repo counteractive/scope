@@ -130,7 +130,7 @@ The top 10 data source types give you 67%+ the total:
 
 Since STIX already has `process`, `file`, `network-traffic`, and `windows-registry-x`, `api` was a nice choice to round it out.  Notice too that authentication logs (`session`) is the only other source on this list that doesn't have an existing STIX type (outside implicit, embedded login times).
 
-Of course, "covering the most techniques" isn't the only measure of usefulness of a data source.  To get a sense of which data sources covered the most commonly observed techniques, we pulled the top 20 techniques from the (excellent) [2020 Red Canary Threat Report](https://redcanary.com/threat-detection-report/) as a representative sample.  Without going into detail on their numbers (the report itself is free, check it out!), we can actually look at all 16 data sources for these techniques:
+Of course, "covering the most techniques" isn't the only measure of usefulness of a data source.  To get a sense of which data sources covered the most commonly observed techniques, we pulled the top 20 techniques from the (excellent) [2020 Red Canary Threat Report](https://redcanary.com/threat-detection-report/) as a representative sample.  Without going into detail on their numbers (the report's free, check it out!), we can actually look at all 16 data sources for these techniques:
 
 | source | count | % | 
 | --- | --- | --- | 
