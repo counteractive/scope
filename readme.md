@@ -109,9 +109,9 @@ Put another way: currently the details of the `process` type live in a word docu
     "type": "x-scope-stix-type",
     "id": "x-scope-stix-type--GUID-FOR-PROCESS-TYPE",
     "name": "process",
-    "schema": { /*json schema from https://github.com/oasis-open/cti-stix2-json-schemas/blob/master/schemas/observables/process.json */ },
-    "external_references": [ /* refs */ ]
-    /* other fields */
+    "schema": "json schema from https://github.com/oasis-open/cti-stix2-json-schemas/blob/master/schemas/observables/process.json",
+    "external_references": [],
+    "other_fields": "with other content"
 }
 ```
 
@@ -131,7 +131,8 @@ This provides some benefits:
         "id": "x-scope-stix-type--GUID-FOR-PROCESS-TYPE",
         "name": "process",
         "external_references": [
-            {/*info about windows EID 4688 and how it supports filling the creator_user_ref field (the user-account -> process embedded relationship)*/}
+            "info about windows EID 4688 and how it supports filling the creator_user_ref field",
+            "(the user-account -> process embedded relationship)"
         ]
     }
     ```
@@ -146,7 +147,8 @@ This provides some benefits:
         "source_ref": "x-scope-stix-type--GUID-FOR-PROCESS-TYPE",
         "target_ref": "x-scope-stix-type--GUID-FOR-REGISTRY-KEY-TYPE",
         "external_references": [
-            {/*info about sysmon EID 13 and how it links process info to registry key activity (the process -> windows-registry-key non-embedded relationship)*/}
+            "info about sysmon EID 13 and how it links process info to registry key activity",
+            "(the process -> windows-registry-key non-embedded relationship)"
         ]
     }
     ```
